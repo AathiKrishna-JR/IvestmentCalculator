@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, signal } from "@angular/core";
 import { HeaderComponent } from "./header/header.component";
 import { UserComponent } from "./user/user.component";
 import { Calculation } from "./call.model";
@@ -12,15 +12,14 @@ import { IresultComponent } from "./iresult/iresult.component";
 })
 export class AppComponent {
   
-  resultsData ?: {
+  resultsData = signal< {
     year: number,
     interest: number,
     valueEndOfYear: number,
     annualInvestment: number,
     totalInterest: number,
     totalAmountInvested: number,
-
-}[];
+}[] | undefined >(undefined);
     
     calculateInvestmentResults(data :Calculation) {
         
@@ -42,7 +41,7 @@ export class AppComponent {
             totalInterest: totalInterest,
             totalAmountInvested: data.initialInvestment + data.annualInvestment * year,
           });
-          this.resultsData= annualData;
+          this.resultsData.set(annualData);
       
         }
     }
