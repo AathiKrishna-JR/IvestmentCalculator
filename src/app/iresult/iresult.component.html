@@ -1,5 +1,8 @@
-<p>iresult works!</p>
-
+@if(!results)
+{
+<h2>Please enter the value</h2>
+}
+@else{
 <table>
     <thead>
         <tr>
@@ -9,8 +12,18 @@
             <th>Total Intrested</th>
             <th>Invested Capital</th>
         </tr>
+
     </thead>
     <tbody>
-
+                @for(result of results; track result.year){
+                    <tr>
+                        <td>{{ result.year }}</td>
+                        <td>{{ result.valueEndOfYear | currency}}</td>
+                        <td>{{ result.interest | currency }}</td>
+                        <td>{{ result.totalInterest | currency }}</td>
+                        <td>{{ result.totalAmountInvested | currency }}</td>
+                    </tr>
+                }
     </tbody>
 </table>
+}

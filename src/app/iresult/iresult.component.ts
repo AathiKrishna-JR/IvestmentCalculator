@@ -1,8 +1,9 @@
+import { CurrencyPipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-iresult',
-  imports: [],
+  imports: [CurrencyPipe],
   templateUrl: './iresult.component.html',
   styleUrl: './iresult.component.css'
 })
