@@ -21,7 +21,12 @@ enteredDuration= signal('');
 isEmpty = false
 isDigit = false;
 constructor(public investmentService : InvestmentService){}
-
+  
+ blockE(event: KeyboardEvent): void {
+  if (event.key === 'e' || event.key === 'E' || event.key === '-') {
+    event.preventDefault();
+  }
+}
 
   onSubmit(){
 
@@ -43,7 +48,7 @@ constructor(public investmentService : InvestmentService){}
       this.enteredAnnualInvestment.set('');
       this.enteredDuration.set('');
     }
-    
+
     else if(this.enteredInitialInvestment().length == 0 || this.enteredAnnualInvestment().length == 0 || this.enteredExpectedReturn().length == 0 || this.enteredDuration().length == 0){
       this.isEmpty = true;
        alert("Fill Every Field");
