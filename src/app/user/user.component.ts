@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, signal } from '@angular/core';
+import { Component, EventEmitter, Output, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Calculation } from '../call.model';
 
@@ -10,8 +10,7 @@ import { Calculation } from '../call.model';
 })
 export class UserComponent {
 
-@Output () calculateInvestment = new EventEmitter<Calculation>();
-
+ calculateInvestment = output<Calculation>()
 enteredInitialInvestment = signal('1');
 enteredAnnualInvestment = signal('1');
 enteredExpectedReturn =signal('5');
