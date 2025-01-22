@@ -25,9 +25,13 @@ constructor(public investmentService : InvestmentService){}
 
   onSubmit(){
 
-    
-    if(this.regex.test(this.enteredInitialInvestment()) && this.regex.test(this.enteredAnnualInvestment()) && this.regex.test(this.enteredExpectedReturn())&& this.regex.test(this.enteredDuration())){
-      
+    if(this.enteredDuration() == '0')
+    { 
+      alert("Duration must not be zero");
+    }
+   
+    else if(this.regex.test(this.enteredInitialInvestment()) && this.regex.test(this.enteredAnnualInvestment()) && this.regex.test(this.enteredExpectedReturn())&& this.regex.test(this.enteredDuration()))
+    {
       this.investmentService.calculateInvestmentResults({
               initialInvestment : +this.enteredInitialInvestment(),
               duration : +this.enteredDuration(),
@@ -39,10 +43,12 @@ constructor(public investmentService : InvestmentService){}
       this.enteredAnnualInvestment.set('');
       this.enteredDuration.set('');
     }
+    
     else if(this.enteredInitialInvestment().length == 0 || this.enteredAnnualInvestment().length == 0 || this.enteredExpectedReturn().length == 0 || this.enteredDuration().length == 0){
       this.isEmpty = true;
        alert("Fill Every Field");
     }
+    
     else {
       this.isDigit = false;
       alert("Only numbers should be Enter");

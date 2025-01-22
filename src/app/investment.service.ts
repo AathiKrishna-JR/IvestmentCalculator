@@ -23,8 +23,7 @@ export class InvestmentService {
             const year = i + 1;
             const interestEarnedInYear = investmentValue * (data.expectedReturn / 100);
             investmentValue += interestEarnedInYear + data.annualInvestment;
-            const totalInterest =
-              investmentValue - data.annualInvestment * year - data.initialInvestment;
+            const totalInterest = investmentValue - data.annualInvestment * year - data.initialInvestment;
             annualData.push({
               year: year,
               interest: interestEarnedInYear,
