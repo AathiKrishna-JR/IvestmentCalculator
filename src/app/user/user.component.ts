@@ -11,25 +11,43 @@ import { InvestmentService } from '../investment.service';
 })
 export class UserComponent {
 
+  regex = /^[0-9]+$/;
  
-enteredInitialInvestment = signal('1000');
-enteredAnnualInvestment = signal('200');
-enteredExpectedReturn =signal('5');
-enteredDuration= signal('10');
+enteredInitialInvestment = signal('');
+enteredAnnualInvestment = signal('');
+enteredExpectedReturn =signal('');
+enteredDuration= signal('');
 
+isEmpty = false
+isDigit = false;
 constructor(public investmentService : InvestmentService){}
 
 
   onSubmit(){
-    this.investmentService.calculateInvestmentResults({
-      initialInvestment : +this.enteredInitialInvestment(),
-  duration : +this.enteredDuration(),
-  expectedReturn : +this.enteredExpectedReturn(),
-  annualInvestment : +this.enteredAnnualInvestment(),
-});
-    this.enteredInitialInvestment.set('0');
-    this.enteredAnnualInvestment.set('0')
-    this.enteredAnnualInvestment.set('0')
-    this.enteredDuration.set('0')
-}
+
+    
+    if(this.regex.test(this.enteredInitialInvestment()) && this.regex.test(this.enteredAnnualInvestment()) && this.regex.test(this.enteredExpectedReturn())&& this.regex.test(this.enteredDuration())){
+      
+      this.investmentService.calculateInvestmentResults({
+              initialInvestment : +this.enteredInitialInvestment(),
+              duration : +this.enteredDuration(),
+              expectedReturn : +this.enteredExpectedReturn(),
+              annualInvestment : +this.enteredAnnualInvestment(),});
+      alert("result calculated");
+      this.enteredInitialInvestment.set('');
+      this.enteredAnnualInvestment.set('');
+      this.enteredAnnualInvestment.set('');
+      this.enteredDuration.set('');
+    }
+    else if(this.enteredInitialInvestment().length == 0 || this.enteredAnnualInvestment().length == 0 || this.enteredExpectedReturn().length == 0 || this.enteredDuration().length == 0){
+      this.isEmpty = true;
+       alert("Fill Every Field");
+    }
+    else {
+      this.isDigit = false;
+      alert("Only numbers should be Enter");
+    }
+            
+    
+  }
 }
