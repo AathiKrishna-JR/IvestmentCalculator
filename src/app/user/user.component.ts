@@ -17,7 +17,7 @@ enteredAnnualInvestment = '1';
 enteredExpectedReturn ='5';
 enteredDuration= '10'
 
-const calData : Calculation = {
+ calData : Calculation = {
   initialInvestment : Number(this.enteredInitialInvestment),
   duration : Number(this.enteredDuration),
   expectedReturn : Number(this.enteredExpectedReturn),
@@ -25,7 +25,6 @@ const calData : Calculation = {
 
 };
 
-}
   onSubmit(){
   
     this.calculateInvestment.emit(this.calData);
