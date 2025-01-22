@@ -11,8 +11,8 @@ import { Calculation } from '../call.model';
 export class UserComponent {
 
  calculateInvestment = output<Calculation>()
-enteredInitialInvestment = signal('1');
-enteredAnnualInvestment = signal('1');
+enteredInitialInvestment = signal('1000');
+enteredAnnualInvestment = signal('200');
 enteredExpectedReturn =signal('5');
 enteredDuration= signal('10');
 
@@ -27,7 +27,7 @@ enteredDuration= signal('10');
   onSubmit(){
   
     this.calculateInvestment.emit(this.calData);
-  
+    this.enteredInitialInvestment.set('0')
   
 }
 }
